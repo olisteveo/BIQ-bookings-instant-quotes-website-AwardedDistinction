@@ -12,7 +12,7 @@ services:
       - 8090:80
       - 8043:443
     volumes:
-      - ./:/var/www/html
+      - ./app:/var/www/html
     networks:
       - webapp_network
 
