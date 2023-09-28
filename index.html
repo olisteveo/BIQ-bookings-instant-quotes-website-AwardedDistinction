@@ -10,28 +10,37 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://api.taxicode.com/jswrapper/"></script>
     <script src="/js/main.js" defer></script>
     <script src="/js/biq_api.js" defer></script>
 </head>
 <body>
     <div id="login-form-container" style="display:none">
         <form id="login-form">
-            <label for="login">Login:</label>
-            <input type="text" id="login">
-            <label for="password">Password:</label>
-            <input type="text" id="password">
+            <label for="login">Login:</label><br/>
+            <input type="text" id="login" name="login"><br/>
+            <label for="password">Password:</label><br/>
+            <input type="password" id="password" name="password"><br/>
+            <button id="login-form-submit">Login</button>
+            <button id="cancel-login">Cancel</button>
         </form>
     </div>
+    <div id="login-button-container" style="display:none">
+        <button id="show-login-form">Login</button>
+    </div>
+    <div id="logout-button-container" style="display:none">
+        <button id="logout">Logout</button>
+    </div>
     <form id="biq-journey-form">
-        <label for="pickup">Pickup:</label><br>
-        <input type="text" id="pickup" name="pickup" value="york"><br>
+        <label for="pickup">Pickup:</label><br/>
+        <input type="text" id="pickup" name="pickup" value="york"><br/>
         <label for="destination">Destination:</label><br>
-        <input type="destination" id="destination" name="destination" value="york station"><br>
-        <label for="date">Date:</label><br>
-        <input type="text" id="date" name="date" value="12-16-2024"><br>
-        <label for="time">Time:</label><br>
-        <input type="text" id="time" name="time" value="22:22:00"><br>
-        <label for="passengers">Passengers:</label><br>
+        <input type="destination" id="destination" name="destination" value="york station"><br/>
+        <label for="date">Date:</label><br/>
+        <input type="text" id="date" name="date" value="12-16-2024"><br/>
+        <label for="time">Time:</label><br/>
+        <input type="text" id="time" name="time" value="22:22:00"><br/>
+        <label for="passengers">Passengers:</label><br/>
         <input type="passengers" id="passengers" name="passengers" value="5">
         <button id="biq-journey-form-submit">Get Quotes</button>
       </form>
