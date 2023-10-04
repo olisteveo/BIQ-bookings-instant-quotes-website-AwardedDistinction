@@ -1,0 +1,120 @@
+#login-form-container {
+    float: right;
+}
+
+#login-button-container {
+    float: right;
+}
+
+#logout-button-container {
+    float: right;
+}
+
+/* Style the Login button */
+#show-login-form {
+    width: 100%; /* Make the button full width */
+    background-color: #007acc; /* Blue color */
+    color: #fff; /* White text color */
+    border: none;
+    padding: 10px; /* Adjust padding for the button */
+    cursor: pointer;
+    border-radius: 5px; /* Rounded corners */
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    font-size: 16px; /* Font size for the button */
+    margin-top: 10px; /* Add space between inputs and the button */
+}
+
+#show-login-form:hover {
+    background-color: #c4e5fc; /* Darker blue color on hover */
+}
+
+/* Style the tooltip */
+.tooltip {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    padding: 5px 10px;
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    right: 100%; /* Position to the left of the button */
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+#show-login-form:hover + .tooltip {
+    opacity: 1;
+}
+
+
+#login-form-container {
+    max-width: 500px; /* Adjust the max-width to your preference */
+    margin: 0 auto; /* Center the form horizontally on the page */
+    padding: 20px; /* Add padding for spacing */
+    box-sizing: border-box; /* Include padding in the width calculation */
+    border: 1px solid #ccc; /* Add a fine border */
+    border-radius: 5px; /* Add rounded corners */
+    margin-top: 20px; /* Add space between the form and the screen edge */
+    display: flex;
+    flex-direction: column; /* Center elements vertically within the container */
+    align-items: center; /* Center elements horizontally within the container */
+}
+
+/* Adjust the size of input boxes and spacing */
+#login-form input {
+    width: 95%;
+    border: 1px solid #ccc; /* Fine border */
+    padding: 8px; /* Adjust padding for spacing within the input */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Font size for inputs */
+    margin-bottom: 10px; /* Add spacing between input rows */
+}
+
+/* Adjust label styles */
+#login-form label {
+    text-align: left; /* Align labels to the left */
+    font-weight: bold; /* Make labels bold */
+}
+
+/* Style the login button */
+#login-form-submit {
+    width: 100%; /* Make the button full width */
+    background-color: #007acc; /* Blue color */
+    color: #fff; /* White text color */
+    border: none;
+    padding: 10px; /* Adjust padding for the button */
+    cursor: pointer;
+    border-radius: 5px; /* Rounded corners */
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    font-size: 16px; /* Font size for the button */
+    margin-top: 10px; /* Add space between inputs and the button */
+    margin-bottom: 2px;
+}
+
+#login-form-submit:hover {
+    background-color: #005b9e; /* Darker blue color on hover */
+}
+
+/* Style the Cancel button */
+#cancel-login {
+    width: 100%; /* Make the button full width */
+    background-color: #ccc; /* Light gray background */
+    color: #333; /* Dark gray text color */
+    border: none;
+    padding: 10px; /* Adjust padding for the button */
+    cursor: pointer;
+    border-radius: 5px; /* Rounded corners */
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    font-size: 16px; /* Font size for the button */
+    margin-top: 10px; /* Add space between inputs and the button */
+}
+
+#cancel-login:hover {
+    background-color: #999; /* Slightly darker gray on hover */
+}
+
