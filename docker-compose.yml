@@ -7,7 +7,10 @@ services:
     tty: true
     stdin_open: true
     restart: unless-stopped
-    image: ewc2020/web:php-5.6-apache-latest
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: olisteves/biq:latest
     ports:
       - 8090:80
       - 8043:443

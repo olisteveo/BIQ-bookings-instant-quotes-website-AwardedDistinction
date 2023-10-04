@@ -1,11 +1,104 @@
-#login-form-container {
-    float: right;
+
+#biq-journey-form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1000px; /* Adjust the max-width to your preference */
+    margin: 0 auto; /* Center the form horizontally on the page */
 }
 
-#login-button-container {
-    float: right;
+/* Reduce the input border thickness and adjust spacing */
+#biq-journey-form input {
+    width: 100%;
+    border: 1px solid #ccc; /* Thin border */
+    padding: 5px; /* Adjust padding for spacing within the input */
+    margin-bottom: 5px; /* Reduce spacing between inputs */
 }
 
-#logout-button-container {
-    float: right;
+/* Round the left corner of the first input */
+#pickup {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+/* Round the right corner of the last input */
+#passengers {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+/* Adjust label styles */
+#biq-journey-form label {
+    text-align: center;
+    display: block; /* Display labels as blocks to stack them on top of inputs */
+    margin-bottom: 5px; /* Reduce spacing between labels and inputs */
+}
+
+label {
+    font-family: Arial, sans-serif; /* Choose font-family */
+    font-size: 16px; /* Adjust font size */
+    color: #333; /* Adjust the colour */
+    text-transform: capitalize; /* Convert text */
+}
+
+label:hover {
+    color: #007acc; /* Change colour on hover */
+}
+
+input:focus + label {
+    color: #ff6600; /* Change colour on focus*/
+}
+
+
+.form-row {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px; /* Adjust the margin between form rows */
+}
+
+label {
+    text-align: center;
+}
+
+input {
+    width: 100%;
+}
+
+#biq-journey-form-submit {
+    width: 100%;
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 3px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 2px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+#biq-journey-form-submit:hover {
+    background-color: darkgreen; /* Change colour on hover */
+}
+
+
+#quote-results {
+    max-width: 600px; /* Adjust max-width */
+    margin: 0 auto; /* Center horizontally */
+    text-align: center; /* Center text horizontally in div */
+    padding: 20px; /* Add some spacing around the content */
+}
+
+/* Responsive styles for mobile*/
+@media (max-width: 600px) {
+    .form-row {
+        flex-direction: column; /* Stack the labels and inputs vertically */
+    }
+
+    label {
+        text-align: left; /* Adjust label alignment for mobile view */
+    }
 }
