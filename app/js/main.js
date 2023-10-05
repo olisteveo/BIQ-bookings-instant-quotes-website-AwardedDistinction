@@ -1,5 +1,5 @@
 
-
+var quoting = false;
 
 
 var journey = {
@@ -9,8 +9,23 @@ var journey = {
     "passengers" : "2"
 }
 
-function quoteCard(quote_id, quote_data) {
-    return "<div id=\"quote-" + quote_id + "\"><h3>" + quote_id + ": - " + quote_data.company_name + " &pound;" + parseFloat(quote_data.vehicles[0].price).toFixed(2) + "</h3></div>"
+function createQuoteCard(idx, itm) {
+    var quoteCard = $("<div class='quote-card'></div>");
+
+    var h3 = $("<h3>Quote " + idx + "</h3>");
+    quoteCard.append(h3);
+    var img = $("<img/>");
+    img.attr({ "src" : itm.vehicles[0].image });
+    quoteCard.append(img);
+
+
+    var details = ["pickup", "destination", "date", "price"]; // Add more details as needed
+    $.each(details, function(i, detail) {
+        var p = $("<p>" + detail.charAt(0).toUpperCase() + detail.slice(1) + ": " + itm[detail] + "</p>");
+        quoteCard.append(p);
+    });
+
+    return quoteCard; // Return entire quote card as jQuery object
 }
 
 function showLogout() {
@@ -58,38 +73,43 @@ document.addEventListener("DOMContentLoaded", function(event) {
         dropdown: true,
         scrollbar: true
     });
-    $("#biq-journey-form-submit").on("click", function(e){
+    
+    $("#biq-journey-form-submit").on("click", function(e) {
         e.preventDefault();
+        if(quoting) { return } // show in report spam click protected
+        quoting = true;
         var f = $("#biq-journey-form"),
             j = {
-                "pickup" : f.find("[name=pickup]").val(),
-                "destination" : f.find("[name=destination]").val(),
-                "date" : f.find("[name=date]").val() + f.find("[name=time]").val(),
-                "passengers" : parseInt(f.find("[name=passengers]").val())
+                "pickup": f.find("[name=pickup]").val(),
+                "destination": f.find("[name=destination]").val(),
+                "date": f.find("[name=date]").val() + f.find("[name=time]").val(),
+                "passengers": parseInt(f.find("[name=passengers]").val())
             };
-            console.log(j)
-            console.log(f)
-        BIQ.getQuotes(j, function(response){
-            if(response.status == BIQ.STATUS_OK) {
+        console.log(j);
+        console.log(f);
+        $("#quote-results").html($("<h4>Loading...</h4>"));
+        BIQ.getQuotes(j, function(response) {
+            if (response.status == BIQ.STATUS_OK) {
                 if (Object.keys(response.quotes).length) {
-
-                    var ele = $("<div></div>")
+                    var ele = $("<div id='quote-cards'></div>"); // Create a container for quote cards
                     $.each(response.quotes, function(idx, itm) {
-                        console.log(itm)
-                        ele.append(quoteCard(idx, itm))
-        
-                    })
+                        ele.append(createQuoteCard(idx, itm)); // Append each quote card to the container
+                    });
+                    $("#quote-results").html(ele); // Replace the content of #quote-results with the container
                 } else {
-                    var ele = $("<h4>" + response.warnings[0] + "</h4>")
+                    var ele = $("<h4>" + response.warnings[0] + "</h4>");
                 }
-                $("#quote-results").html(ele)
+                $("#quote-results").html(ele);
             } else {
-                $("#quote-results").html($("<h4>" + response.error + "</h4>"))
+                $("#quote-results").html($("<h4>" + response.error + "</h4>"));
             }
-            console.log(response)
-        })
-        return false
+            quoting = false;
+            console.log(response);
+        });
+        return false;
     });
+    
+    
     $("#show-login-form").on("click", function(e) {
         $("#login-form-container").show();
         hideLoginButton();
