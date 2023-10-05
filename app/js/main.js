@@ -8,9 +8,13 @@ var journey = {
     "date" : "03-09-2024 10:30:34",
     "passengers" : "2"
 }
-
+function dateNowPlusDays(d) {
+    var n = new Date(),
+        nd = new Date(n.setDate(n.getDate() + d));
+    return nd;
+}
 function createQuoteCard(idx, itm) {
-    var quoteCard = $("<div class='quote-card'></div>");
+    var quoteCard = $("<div id=\"quote-" + idx +"\" class='quote-card'></div>");
 
     var h3 = $("<h3>Quote " + idx + "</h3>");
     quoteCard.append(h3);
@@ -19,12 +23,22 @@ function createQuoteCard(idx, itm) {
     quoteCard.append(img);
 
 
-    var details = ["pickup", "destination", "date", "price"]; // Add more details as needed
+    var details = ["company_name"]; // Add more details as needed
     $.each(details, function(i, detail) {
         var p = $("<p>" + detail.charAt(0).toUpperCase() + detail.slice(1) + ": " + itm[detail] + "</p>");
         quoteCard.append(p);
     });
+    var rating = itm.rating.score;
+    if(rating) {
+        var p = $("<p>Rating : " + rating + "</p>");
+        quoteCard.append(p);
+    }
 
+    var p = $("<p>&pound" + itm.price.toFixed(2) + "</p>");
+    quoteCard.append(p);
+    
+    var p = $("<button class=\"book-now\">Book Now</button>");
+    quoteCard.append(p);
     return quoteCard; // Return entire quote card as jQuery object
 }
 
@@ -73,7 +87,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
         dropdown: true,
         scrollbar: true
     });
-    
+    // Getter
+    var defaultDate = dateNowPlusDays(3);
+   $("#date").val( new Number(defaultDate.getMonth() +1) + '/' + defaultDate.getDate() + '/' + defaultDate.getFullYear());
     $("#biq-journey-form-submit").on("click", function(e) {
         e.preventDefault();
         if(quoting) { return } // show in report spam click protected
@@ -109,6 +125,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
         return false;
     });
     
+    $("body").on("click", "#quote-results #quote-cards .quote-card button.book-now", function(e) {
+        console.log("yfufgu");
+        alert(e.currentTarget);
+        console.log($(e.currentTarget));
+    })
     
     $("#show-login-form").on("click", function(e) {
         $("#login-form-container").show();

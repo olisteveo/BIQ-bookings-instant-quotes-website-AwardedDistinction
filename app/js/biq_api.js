@@ -2,13 +2,14 @@ var BIQ = {
     STATUS_OK : "OK",
     STATUS_ERROR : "ERROR",
     "api_host" : "https://api.taxicode.com/",
+    "key" : "FmxHJkqDsBcUQavP",
 
     "getQuotes" : function(data, success) {
         var url = BIQ.api_host + "booking/quote/"
         $.ajax({
-            type: "GET",
+            type: "POST",
             url: url,
-            data: data,
+            data: { ...data, key : BIQ.key },
             success: success,
             dataType: "json"
           });
