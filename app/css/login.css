@@ -4,6 +4,9 @@
 
 #login-button-container {
     float: right;
+    margin-right: 10px;
+    min-width: 50px;
+    min-height: 50px;
 }
 
 #logout-button-container {
@@ -11,6 +14,24 @@
 }
 
 /* Style the Login button */
+#header {
+    background-color: #DDF2FF; /* Default header color */
+    color: #fff; /* Text color */
+    padding: 10px 0; /* Adjust padding as needed */
+    text-align: center; /* Center-align the content */
+    margin-bottom: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Add box shadow */
+}
+
+#logo {
+    display: inline-block; /* Make the logo behave as an inline-block element */
+}
+
+#logo img {
+    width: 300px; /* Adjust logo width */
+}
+
+/* Style for the "show-login-form" button (if needed elsewhere) */
 #show-login-form {
     width: 100%;
     background-color: #73bcec; 
@@ -23,6 +44,11 @@
     transition: background-color 0.3s ease;
     font-size: 16px; 
     margin-top: 10px;
+}
+
+/* Style for the "show-login-form" button when changing color (if needed) */
+#show-login-form.color-change {
+    background-color: #dc3545; /* New color */
 }
 
 #show-login-form:hover {
@@ -78,7 +104,7 @@
     margin-top: 20px; 
     display: flex;
     flex-direction: column; 
-    align-items: center; 
+    background-color: #fff;
 }
 
 /* Adjust the size of input boxes and spacing */
@@ -114,7 +140,7 @@
 }
 
 #login-form-submit:hover {
-    background-color: #005b9e; 
+    background-color: #2A2C7B; 
 }
 
 /* Style for Cancel button */

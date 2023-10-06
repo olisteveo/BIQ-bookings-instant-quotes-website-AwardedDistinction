@@ -7,6 +7,7 @@
     align-items: flex-start;
     max-width: 1000px; /* Adjust the max-width to your preference */
     margin: 0 auto; /* Center the form horizontally on the page */
+    position: relative;
 }
 
 /* Reduce the input border thickness and adjust spacing */
@@ -69,7 +70,7 @@ input {
 
 #biq-journey-form-submit {
     width: 100%;
-    background-color: green;
+    background-color: #EB1E29;
     color: white;
     border: none;
     padding: 3px;
@@ -81,36 +82,7 @@ input {
 }
 
 #biq-journey-form-submit:hover {
-    background-color: darkgreen; /* Change colour on hover */
-}
-
-
-#quote-results {
-    max-width: 600px; /* Adjust max-width */
-    margin: 0 auto; /* Center horizontally */
-    text-align: center; /* Center text horizontally in div */
-    padding: 20px; /* Add some spacing around the content */
-}
-
-/* Style for the quote cards */
-.quote-card {
-    background-color: #f5f5f5;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Style for the quote card details */
-.quote-card p {
-    margin: 5px 0;
-}
-
-/* Style for the quote card headings */
-.quote-card h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
+    background-color: rgb(30, 145, 30); /* Change colour on hover */
 }
 
 /* Responsive styles for mobile*/
@@ -122,4 +94,11 @@ input {
     label {
         text-align: left; /* Adjust label alignment for mobile view */
     }
+}
+
+/* Style for the blue strip (footer) */
+.bottom-strip {
+    background-color: #007acc;
+    height: 200px;
+    width: 100%;
 }

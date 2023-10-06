@@ -1,32 +1,59 @@
 
 var quoting = false;
 
-
 var journey = {
-    "pickup" : "York",
-    "destination" : "York Station",
+    "pickup" : "Vauxhall",
+    "destination" : "Battersea",
     "date" : "03-09-2024 10:30:34",
     "passengers" : "2"
 }
-
+function dateNowPlusDays(d) {
+    var n = new Date(),
+        nd = new Date(n.setDate(n.getDate() + d));
+    return nd;
+}
 function createQuoteCard(idx, itm) {
-    var quoteCard = $("<div class='quote-card'></div>");
+    var quoteCard = $("<div id=\"quote-" + idx +"\" class='quote-card'></div>");
 
-    var h3 = $("<h3>Quote " + idx + "</h3>");
+    var h3 = $("<h3>" + itm.company_name + "</h3><p>");
     quoteCard.append(h3);
-    var img = $("<img/>");
-    img.attr({ "src" : itm.vehicles[0].image });
-    quoteCard.append(img);
-
-
-    var details = ["pickup", "destination", "date", "price"]; // Add more details as needed
-    $.each(details, function(i, detail) {
-        var p = $("<p>" + detail.charAt(0).toUpperCase() + detail.slice(1) + ": " + itm[detail] + "</p>");
-        quoteCard.append(p);
+    var img = $("<img class='quote-card-image'/>");
+    img.attr({
+        "src": itm.vehicles[0].image,
+        "style": "max-width: 200px; max-height: 150px;" // Set maximum width and height had to do inline
     });
+    quoteCard.append(img);
+    var rating = itm.rating.score;
+    if(rating) {
+        var p = $("<p>Rating : " + rating + "/5</p>");
+        quoteCard.append(p);
+    }
 
+    var p = $("<p>&pound" + itm.price.toFixed(2) + "</p>");
+    quoteCard.append(p);
+    
+    var p = $("<button class=\"book-now\">Book Now</button>");
+    quoteCard.append(p);
     return quoteCard; // Return entire quote card as jQuery object
 }
+
+// Back to top button
+$(document).ready(function() {
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 400) {
+            $('#back-to-top').fadeIn();
+        } else {
+            $('#back-to-top').fadeOut();
+        }
+    });
+
+    $('#back-to-top a').click(function() {
+        $('body,html').animate({
+            scrollTop: 0
+        }, 800);
+        return false;
+    });
+});
 
 function showLogout() {
     $("#logout-button-container").show();
@@ -46,14 +73,13 @@ function hideLoginButton() {
 
 function hideLogin() {
     $("#login-form-container").hide();
+    showLogin();
 }
-
 
 function userLoggedIn(tc_user_auth){
     showLogout();
     $("#login-button-container").hide();
 }
-
 
 document.addEventListener("DOMContentLoaded", function(event) {
     console.log("event loaded");
@@ -73,7 +99,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
         dropdown: true,
         scrollbar: true
     });
-    
+    // Getter
+    var defaultDate = dateNowPlusDays(3);
+   $("#date").val( new Number(defaultDate.getMonth() +1) + '/' + defaultDate.getDate() + '/' + defaultDate.getFullYear());
     $("#biq-journey-form-submit").on("click", function(e) {
         e.preventDefault();
         if(quoting) { return } // show in report spam click protected
@@ -87,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             };
         console.log(j);
         console.log(f);
-        $("#quote-results").html($("<h4>Loading...</h4>"));
+        $("#quote-results").html($("<p><p><img src='/img/loading.gif' alt='Loading...' />"));
         BIQ.getQuotes(j, function(response) {
             if (response.status == BIQ.STATUS_OK) {
                 if (Object.keys(response.quotes).length) {
@@ -109,6 +137,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
         return false;
     });
     
+    $("body").on("click", "#quote-results #quote-cards .quote-card button.book-now", function(e) {
+        console.log("yfufgu");
+        alert(e.currentTarget);
+        console.log($(e.currentTarget));
+    })
     
     $("#show-login-form").on("click", function(e) {
         $("#login-form-container").show();
@@ -131,12 +164,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 alert("Unable to Login")
             }
         });
-
+    });
+    // cancel login
     $("#cancel-login").on("click", function(e){
         e.preventDefault();
         hideLogin();
-    })
     });
+    // logout
     $("#logout").on("click", function(e){
         e.preventDefault()
         BIQ.logout(function(response) {
