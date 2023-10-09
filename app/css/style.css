@@ -18,6 +18,12 @@
     margin-bottom: 5px; /* Reduce spacing between inputs */
 }
 
+#biq-journey-form input:focus {
+    outline: none; /* Remove the default focus outline */
+    /* You can also set other border properties as needed */
+    border: 1px solid #ccc; /* Set a custom border style */
+}
+
 /* Round the left corner of the first input */
 #pickup {
     border-top-left-radius: 5px;
