@@ -37,24 +37,6 @@ function createQuoteCard(idx, itm) {
     return quoteCard; // Return entire quote card as jQuery object
 }
 
-// Back to top button
-$(document).ready(function() {
-    $(window).scroll(function() {
-        if ($(this).scrollTop() > 400) {
-            $('#back-to-top').fadeIn();
-        } else {
-            $('#back-to-top').fadeOut();
-        }
-    });
-
-    $('#back-to-top a').click(function() {
-        $('body,html').animate({
-            scrollTop: 0
-        }, 800);
-        return false;
-    });
-});
-
 function showLogout() {
     $("#logout-button-container").show();
 }
@@ -72,7 +54,7 @@ function hideLoginButton() {
 }
 
 function hideLogin() {
-    $("#login-form-container").hide();
+    document.querySelector("#login-form-dialog").close();
     showLogin();
 }
 
@@ -144,7 +126,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     })
     
     $("#show-login-form").on("click", function(e) {
-        $("#login-form-container").show();
+        document.querySelector("#login-form-dialog").showModal();
         hideLoginButton();
     });
     $("#login-form-submit").on("click", function(e){
@@ -180,5 +162,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
             showLogin();
         })
 
+    });
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 400) {
+            $('#back-to-top').fadeIn();
+        } else {
+            $('#back-to-top').fadeOut();
+        }
+    });
+
+    $('#back-to-top a').click(function() {
+        $('body,html').animate({
+            scrollTop: 0
+        }, 800);
+        return false;
     });
 })
