@@ -162,3 +162,17 @@
     background-color: #999; 
 }
 
+dialog#login-form-dialog {
+    position: absolute;
+}
+
+#dialog {
+    position: relative;
+
+    width: 600px;
+    margin-left: -300px;
+
+    height: 400px;
+    margin-top: -200px;
+}
+
