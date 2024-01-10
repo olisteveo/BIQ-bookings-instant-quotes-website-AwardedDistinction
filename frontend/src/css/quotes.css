@@ -1,0 +1,119 @@
+.quote-form {
+    background-color: #2A2C7B; /* Blue strip background color */
+    padding: 20px; /* Adjust padding as needed */
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow */
+    margin-top: -10px; /* Adjust margin to position it just below the header */
+}
+
+.quote-form label {
+    font-weight: bold; /* Make the text bolder */
+    color: #fff; /* Set text color to white */
+}
+
+/* Remove the border for the focused input */
+input:focus {
+    border: 1px solid #ccc;
+}
+
+/* Change the color of the label when the input is focused */
+input:focus + label {
+    color: #ff6600; /* Change colour on focus */
+}
+
+#quote-results {
+    max-width: 600px; /* Adjust max-width */
+    margin: 0 auto; /* Center horizontally */
+    text-align: center; /* Center text horizontally in div */
+    padding: 20px; /* Add some spacing around the content */
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally within the container */
+    align-items: center; /* Center vertically within the container */
+}
+
+#quote-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Create three columns */
+    gap: 20px; /* Add some spacing between cards */
+    justify-items: center; /* Center items horizontally within the grid */
+    align-content: start; /* Start the new row when needed */
+}
+
+/* Style for the quote cards */
+.quote-card {
+    background-color: #DDF2FF;
+    border: 1px solid #ccc;
+    width: 200px;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Remove margin and set a fixed height to ensure uniform card sizes */
+    margin: 0;
+    height: 300px; /* Adjust the height as needed */
+}
+
+
+
+.quote-card-image {
+    max-width: 50%; /* Set your desired maximum width */
+    max-height: 50%; /* Set your desired maximum height */
+}
+
+
+/* Style for the quote card details */
+.quote-card p {
+    margin: 5px 0;
+}
+
+/* Style for the quote card headings */
+.quote-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.book-now {
+    background-color: #2A2C7B; /* Slight transparency (0.9) */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease; /* Add box-shadow transition */
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add shadow effect */
+}
+
+.book-now:hover {
+    background-color: rgb(30, 145, 30);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Adjust shadow on hover */
+}
+
+
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    background-color: rgba(0, 122, 204, 0.8); /* Use rgba with an alpha value for transparency */
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    margin-left: -60px;
+    display: none;
+}
+
+#back-to-top a {
+    text-decoration: none;
+    color: #fff;
+}
+.tc-autocomplete-suggestions li {
+    font-family: Arial, sans-serif; /* Choose font-family */
+}
+
+.tc-autocomplete-suggestions li.tc-autocomplete-title, .tc-autocomplete-suggestions:hover li.tc-autocomplete-title {
+    background: #2A2C7B;
+    color: #fff !important;
+    border: azure solid 0.2px;
+}
