@@ -1,0 +1,60 @@
+version: '3.7'
+
+services:
+
+  # Python backend
+  biq-webserver:
+    container_name: biq-webserver
+    tty: true
+    stdin_open: true
+    restart: unless-stopped
+    image: ${BE_DOCKER_BUILD_IMAGE}:${BE_DOCKER_BUILD_IMAGE_TAG}
+    environment:
+        - APP_VER=${APP_VER}
+    ports:
+      - ${APP_PORT}:80
+      - ${APP_SSL_PORT}:443
+    volumes:
+      - ./backend/src:/code/src
+    networks:
+      - webapp_network
+
+  # Database Server
+  database-biq-local:
+    container_name: "${DB_HOST_CONTAINER}"
+    tty: true
+    restart: unless-stopped
+    image: ${DB_DOCKER_IMAGE}:${DB_DOCKER_IMAGE_TAG}
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    ports:
+      - ${DB_PORT}:3306
+    volumes:
+      - database-biq-local-data:/var/lib/mysql
+    networks:
+      - webapp_network
+  
+  # phpMyAdmin Service
+  biq-phpmyadmin-local:
+    container_name: "biq-phpmyadmin-local"
+    tty: true
+    restart: unless-stopped
+    image: ${PMA_DOCKER_IMAGE}:${PMA_DOCKER_IMAGE_TAG}
+    depends_on:
+        - ${PMA_HOST}
+    ports:
+      - ${PMA_PORT}:80
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=${PMA_HOST}
+      - PMA_USER=${PMA_USER}
+      - PMA_PASSWORD=${PMA_PASSWORD}
+    networks:
+      - webapp_network
+
+# Custom network for composed containers to communicate on
+networks:
+  webapp_network:
+    driver: bridge
