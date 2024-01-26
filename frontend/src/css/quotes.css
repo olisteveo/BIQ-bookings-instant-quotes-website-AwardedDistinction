@@ -22,7 +22,7 @@ input:focus + label {
 }
 
 #quote-results {
-    max-width: 600px; /* Adjust max-width */
+    max-width: 90%; /* Adjust max-width */
     margin: 0 auto; /* Center horizontally */
     text-align: center; /* Center text horizontally in div */
     padding: 20px; /* Add some spacing around the content */
@@ -116,4 +116,13 @@ input:focus + label {
     background: #2A2C7B;
     color: #fff !important;
     border: azure solid 0.2px;
+}
+
+#quote-results h4.error {
+    font-family: Arial, sans-serif; /* Choose font-family */
+    background-color: #f841419a;
+    color: #fff;
+    width: 60%;
+    padding: 5px;
+
 }

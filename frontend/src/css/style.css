@@ -108,3 +108,9 @@ input {
     height: 200px;
     width: 100%;
 }
+
+#back-to-top a {
+    font-family: Arial, Helvetica, sans-serif; /* Replace 'YourChosenFont' with the actual font you want to use */
+    /* Other styles you may want to apply */
+    /* Add any other styles as needed */
+}

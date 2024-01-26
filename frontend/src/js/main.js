@@ -18,16 +18,8 @@ function showMap() {
     initializeMap();
 }
 
-function showLogout() {
-    $("#logout-button-container").show();
-}
-
 function hideLogout() {
     $("#logout-button-container").hide();
-}
-
-function showLogin() {
-    $("#login-button-container").show();
 }
 
 function hideLoginButton() {
@@ -36,40 +28,13 @@ function hideLoginButton() {
 
 function hideLogin() {
     document.querySelector("#login-form-dialog").close();
-    showLogin();
-}
-
-function userLoggedIn(tc_user_auth){
-    showLogout();
-    $("#login-button-container").hide();
+    user.showLogin();
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {
     console.log("event loaded");
-    token = Cookie.get('tc_user_auth');
-    console.log(token);
-    if (token) {
-        userLoggedIn(token);
-    } else {
-        showLogin();
-    }
-    $( "#date" ).datepicker();
-    $('#time').timepicker({
-        timeFormat: 'h:mm p',
-        defaultTime: '11',
-        interval: 5,
-        dynamic: true,
-        dropdown: true,
-        scrollbar: true
-    });
-    // Getter
-    var defaultDate = dateNowPlusDays(3);
-   $("#date").val( new Number(defaultDate.getMonth() +1) + '/' + defaultDate.getDate() + '/' + defaultDate.getFullYear());
     
-    $("#show-login-form").on("click", function(e) {
-        document.querySelector("#login-form-dialog").showModal();
-        hideLoginButton();
-    });
+    $("#show-login-form").on("click", user.onUserLoginClick);
     $("#login-form-submit").on("click", function(e){
         e.preventDefault()
         var f = $("#login-form");
@@ -80,9 +45,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
             console.log(response);
             if(response.status == BIQ.STATUS_OK) {
                 Cookie.set("tc_user_auth", response.user.auth_token, 30);
-                userLoggedIn(response.user.auth_token);
+                user.userLoggedIn(response.user.auth_token);
                 hideLogin();
-                showLogout();
+                user.showLogout();
+                alert("refresh to get rid");
             } else {
                 alert("Unable to Login")
             }
@@ -100,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             console.log(response);
             Cookie.remove("tc_user_auth");
             hideLogout();
-            showLogin();
+            user.showLogin();
         })
 
     });

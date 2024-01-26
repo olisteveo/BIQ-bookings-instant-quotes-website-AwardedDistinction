@@ -1,9 +1,0 @@
-#map-container {
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    max-width: 1000px; /* Adjust the max-width*/
-    margin: 0 auto; /* Center horizontally on the page */
-    padding: 20px; /* Add spacing around the map */
-    height: 90px;
-}
