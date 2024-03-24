@@ -1,21 +1,29 @@
 version: '3.7'
 
 services:
-
-  # Python backend
+  # python backend
   biq-webserver:
     container_name: biq-webserver
     tty: true
     stdin_open: true
     restart: unless-stopped
-    image: ${BE_DOCKER_BUILD_IMAGE}:${BE_DOCKER_BUILD_IMAGE_TAG}
+    image: ${BE_DOCKER_IMAGE}:${BE_DOCKER_IMAGE_TAG}
     environment:
         - APP_VER=${APP_VER}
+    volumes:
+      - ./backend/src:/code/src
+    networks:
+      - webapp_network
+
+  nginx-web-server:
+    container_name: nginx-web-server
+    tty: true
+    image: nginx:1.19-alpine
     ports:
       - ${APP_PORT}:80
       - ${APP_SSL_PORT}:443
     volumes:
-      - ./backend/src:/code/src
+      - ./frontend/src:/usr/share/nginx/html # url
     networks:
       - webapp_network
 
@@ -35,7 +43,7 @@ services:
       - database-biq-local-data:/var/lib/mysql
     networks:
       - webapp_network
-  
+
   # phpMyAdmin Service
   biq-phpmyadmin-local:
     container_name: "biq-phpmyadmin-local"
@@ -53,6 +61,27 @@ services:
       - PMA_PASSWORD=${PMA_PASSWORD}
     networks:
       - webapp_network
+
+  # BIQ Handbook
+  biq-handbook:
+    container_name: biq-handbook
+    tty: true
+    stdin_open: true
+    restart: unless-stopped
+    image: ${HANDBOOK_IMAGE}:${HANDBOOK_IMAGE_TAG}
+    ports:
+      - ${HANDBOOK_PORT}:3000
+      - ${HANDBOOK_SSL_PORT}:3001
+    command:
+      - serve
+      - --hostname
+      - '0.0.0.0'
+    networks:
+      - webapp_network
+
+volumes:
+  database-biq-local-data:
+  biq-node_modules:
 
 # Custom network for composed containers to communicate on
 networks:
