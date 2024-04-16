@@ -1,45 +1,49 @@
 .quote-form {
-    background-color: #2A2C7B; /* Blue strip background color */
-    padding: 20px; /* Adjust padding as needed */
+    background-color: #2A2C7B;
+    padding: 20px;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow */
-    margin-top: -10px; /* Adjust margin to position it just below the header */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: -10px;
 }
 
 .quote-form label {
-    font-weight: bold; /* Make the text bolder */
-    color: #fff; /* Set text color to white */
+    font-weight: bold;
+    color: #fff;
 }
 
-/* Remove the border for the focused input */
 input:focus {
     border: 1px solid #ccc;
 }
 
-/* Change the color of the label when the input is focused */
 input:focus + label {
-    color: #ff6600; /* Change colour on focus */
+    color: #ff6600;
 }
 
 #quote-results {
-    max-width: 90%; /* Adjust max-width */
-    margin: 0 auto; /* Center horizontally */
-    text-align: center; /* Center text horizontally in div */
-    padding: 20px; /* Add some spacing around the content */
-    display: flex; /* Use flexbox for centering */
-    justify-content: center; /* Center horizontally within the container */
-    align-items: center; /* Center vertically within the container */
+    max-width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 40px;
+    margin-top: 20px;
 }
 
-#quote-cards {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Create three columns */
-    gap: 20px; /* Add some spacing between cards */
-    justify-items: center; /* Center items horizontally within the grid */
-    align-content: start; /* Start the new row when needed */
+.quote-section {
+    width: 100%;
+    margin-bottom: 20px;
 }
 
-/* Style for the quote cards */
+.quote-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+}
+
 .quote-card {
     background-color: #DDF2FF;
     border: 1px solid #ccc;
@@ -47,54 +51,50 @@ input:focus + label {
     border-radius: 5px;
     padding: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* Remove margin and set a fixed height to ensure uniform card sizes */
-    margin: 0;
-    height: 300px; /* Adjust the height as needed */
+    height: 300px;
+    margin-bottom: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+
 }
-
-
 
 .quote-card-image {
-    max-width: 50%; /* Set your desired maximum width */
-    max-height: 50%; /* Set your desired maximum height */
+    max-width: 50%;
+    max-height: 50%;
 }
 
-
-/* Style for the quote card details */
 .quote-card p {
     margin: 5px 0;
 }
 
-/* Style for the quote card headings */
 .quote-card h3 {
     font-size: 20px;
     margin-bottom: 10px;
 }
 
 .book-now {
-    background-color: #2A2C7B; /* Slight transparency (0.9) */
+    background-color: #2A2C7B;
     color: #fff;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     font-weight: bold;
-    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease; /* Add box-shadow transition */
+    font-family: Arial, Helvetica, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add shadow effect */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .book-now:hover {
     background-color: rgb(30, 145, 30);
     color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Adjust shadow on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
-
 
 #back-to-top {
     position: fixed;
     bottom: 20px;
     left: 50%;
-    background-color: rgba(0, 122, 204, 0.8); /* Use rgba with an alpha value for transparency */
+    background-color: rgba(0, 122, 204, 0.8);
     color: #fff;
     padding: 10px 20px;
     border-radius: 5px;
@@ -102,14 +102,17 @@ input:focus + label {
     cursor: pointer;
     margin-left: -60px;
     display: none;
+    font-family: Arial, Helvetica, sans-serif;
+
 }
 
 #back-to-top a {
     text-decoration: none;
     color: #fff;
 }
+
 .tc-autocomplete-suggestions li {
-    font-family: Arial, sans-serif; /* Choose font-family */
+    font-family: Arial, sans-serif;
 }
 
 .tc-autocomplete-suggestions li.tc-autocomplete-title, .tc-autocomplete-suggestions:hover li.tc-autocomplete-title {
@@ -118,11 +121,38 @@ input:focus + label {
     border: azure solid 0.2px;
 }
 
+.star-icon {
+    height: 16px;
+    width: 16px;
+}
 #quote-results h4.error {
-    font-family: Arial, sans-serif; /* Choose font-family */
+    font-family: Arial, sans-serif;
     background-color: #f841419a;
     color: #fff;
     width: 60%;
     padding: 5px;
-
 }
+
+#highlighted-quotes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* Adjust spacing between highlighted quotes */
+    margin-bottom: 20px; /* Add margin at the bottom */
+}
+
+/* Add spacing between highlighted quotes */
+#highlighted-quotes .quote-card {
+    margin-right: 20px; /* Adjust margin as needed */
+}
+
+/* Adjust layout of other rates */
+#other-rates {
+    display: flex;
+    justify-content: center;
+}
+
+/* Center all quote sections horizontally */
+.quote-section {
+    text-align: center;
+}
+
