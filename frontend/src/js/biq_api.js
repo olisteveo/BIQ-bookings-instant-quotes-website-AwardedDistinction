@@ -9,7 +9,7 @@ var BIQ = {
         $.ajax({
             type: "POST",
             url: url,
-            data: { ...data, key : BIQ.key },
+            data: { ...data, key : BIQ.key, other_rates : "blackcab,uber" },
             success: success,
             dataType: "json"
           });

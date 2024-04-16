@@ -1,3 +1,17 @@
+.banner {
+    background-color: #2a2b7b7e;
+    color: #2A2C7B;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.banner p {
+    margin: 0;
+    font-size: 14px; /* Adjust font size */
+    font-weight: bold; /* Make the text bold */
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 
 #biq-journey-form {
     display: flex;
@@ -8,6 +22,7 @@
     max-width: 1000px; /* Adjust the max-width to your preference */
     margin: 0 auto; /* Center the form horizontally on the page */
     position: relative;
+    margin-bottom: 40px;
 }
 
 /* Reduce the input border thickness and adjust spacing */
@@ -34,6 +49,10 @@
 #passengers {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+}
+
+.horizontal-border {
+    border-top: 3px solid blue; /* Thin blue border */
 }
 
 /* Adjust label styles */
@@ -102,15 +121,58 @@ input {
     }
 }
 
-/* Style for the blue strip (footer) */
-.bottom-strip {
-    background-color: #007acc;
-    height: 200px;
-    width: 100%;
+#back-to-top a {
+    font-family: Arial, Helvetica, sans-serif;
+    
 }
 
-#back-to-top a {
-    font-family: Arial, Helvetica, sans-serif; /* Replace 'YourChosenFont' with the actual font you want to use */
-    /* Other styles you may want to apply */
-    /* Add any other styles as needed */
+footer {
+    background-color: #2a2b7b7e;
+    color: #fff;
+    padding: 30px 0;
+    margin-top: 80px; /* Add margin at the top of the footer */
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.footer-section {
+    background-color: #2A2C7B;
+    flex: 1;
+    padding: 0 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.footer-section h2 {
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-bottom {
+    background-color: #2a2b7b7e;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    font-family: Arial, Helvetica, sans-serif;
+
 }
