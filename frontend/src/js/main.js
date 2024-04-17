@@ -41,10 +41,13 @@ function dateNowPlusDays(d) {
     return nd;
 }
 
-// Function to show the route map
-function showMap(pickupLat, pickupLng, destinationLat, destinationLng) {
+function showMap(pickupLat, pickupLng, destinationLat, destinationLng, journey) {
     $("#map-container").show(); // Show the map container
     const map = initializeMap(); // Initialize the map
+
+    // Display the map banner after the map has been initialized
+    $(".map-banner").show();
+
     console.log(pickupLat, pickupLng, destinationLat, destinationLng);
     const pickup = new google.maps.LatLng(pickupLat, pickupLng);
     const destination = new google.maps.LatLng(destinationLat, destinationLng);
@@ -59,11 +62,33 @@ function showMap(pickupLat, pickupLng, destinationLat, destinationLng) {
     directionsService.route(request, function(result, status) {
         if (status == 'OK') {
             directionsRenderer.setDirections(result);
+
+            // Extract journey details
+            const journeyDate = journey.date;
+            const pickupAddress = journey.pickup.string;
+            const destinationAddress = journey.destination.string;
+            const passengers = journey.people;
+            const distance = journey.distance;
+            const duration = journey.duration_text;
+
+            // Construct HTML to display journey details
+            const journeyDetailsHTML = `
+                <p>Date: ${journeyDate}</p>
+                <p>Pickup: ${pickupAddress}</p>
+                <p>Destination: ${destinationAddress}</p>
+                <p>Passengers: ${passengers}</p>
+                <p>Distance: ${distance} miles</p>
+                <p>Duration: ${duration}</p>
+            `;
+
+            // Append journey details to the map banner
+            $(".map-banner").html(journeyDetailsHTML);
         } else {
             console.error('Directions request failed due to ' + status);
         }
     });
 }
+
 
 // Function to hide the logout button container
 function hideLogout() {
@@ -83,20 +108,44 @@ function hideLogin() {
 
 function renderResults(results) {
     console.log(results);
-    // Check if 'pickup' and 'destination' properties exist
-    if (results.journey.hasOwnProperty('pickup') && results.journey.hasOwnProperty('destination')) {
+
+    // Check if 'journey' property exists
+    if (results.hasOwnProperty('journey')) {
+        const journey = results.journey;
+
+        // Extract journey details
+        const journeyDate = journey.date;
+        const pickupAddress = journey.pickup.string;
+        const destinationAddress = journey.destination.string;
+        const passengers = journey.people;
+        const distance = journey.distance;
+        const duration = journey.duration_text;
+
+        // Construct HTML to display journey details
+        const journeyDetailsHTML = `
+            <p>Date: ${journeyDate}</p>
+            <p>Pickup: ${pickupAddress}</p>
+            <p>Destination: ${destinationAddress}</p>
+            <p>Passengers: ${passengers}</p>
+            <p>Distance: ${distance} miles</p>
+            <p>Duration: ${duration}</p>
+        `;
+
+        // Append journey details to the map banner
+        $(".map-banner").html(journeyDetailsHTML);
+
         // Check if 'pickup' and 'destination' properties have the expected structure
-        if (isValidLocation(results.journey.pickup) && isValidLocation(results.journey.destination)) {
+        if (isValidLocation(journey.pickup) && isValidLocation(journey.destination)) {
             // Extract pickup and destination coordinates from the quote data
-            const pickupLat = parseFloat(results.journey.pickup.position[0]);
-            const pickupLng = parseFloat(results.journey.pickup.position[1]);
-            const destinationLat = parseFloat(results.journey.destination.position[0]);
-            const destinationLng = parseFloat(results.journey.destination.position[1]);
+            const pickupLat = parseFloat(journey.pickup.position[0]);
+            const pickupLng = parseFloat(journey.pickup.position[1]);
+            const destinationLat = parseFloat(journey.destination.position[0]);
+            const destinationLng = parseFloat(journey.destination.position[1]);
 
             // Check if the extracted coordinates are valid numbers
             if (!isNaN(pickupLat) && !isNaN(pickupLng) && !isNaN(destinationLat) && !isNaN(destinationLng)) {
                 // Show the map and update the route
-                showMap(pickupLat, pickupLng, destinationLat, destinationLng);
+                showMap(pickupLat, pickupLng, destinationLat, destinationLng, journey);
             } else {
                 console.error("Invalid latitude or longitude values");
             }
@@ -104,9 +153,10 @@ function renderResults(results) {
             console.error("Invalid structure of 'pickup' or 'destination' properties");
         }
     } else {
-        console.error("Missing 'pickup' or 'destination' properties in the results object");
+        console.error("Missing 'journey' property in the results object");
     }
 }
+
 
 // Function to validate the structure of a location object
 function isValidLocation(location) {
@@ -179,7 +229,7 @@ $(document).ready(function() {
 
     // Event handler for window scroll
     $(window).scroll(function() {
-        if ($(this).scrollTop() > 400) {
+        if ($(this).scrollTop() > 1200) {
             $('#back-to-top').fadeIn(); // Fade in the "Back to Top" button
         } else {
             $('#back-to-top').fadeOut(); // Fade out the "Back to Top" button

@@ -23,25 +23,24 @@ input:focus + label {
     max-width: 90%;
     margin: 0 auto;
     text-align: center;
-    padding: 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
-    margin-bottom: 40px;
-    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .quote-section {
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .quote-row {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .quote-card {
@@ -147,8 +146,12 @@ input:focus + label {
 
 /* Adjust layout of other rates */
 #other-rates {
+    flex-wrap: wrap;
+    justify-content: space-around;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
+    align-items: flex-start;
+    max-width: 90%;
 }
 
 /* Center all quote sections horizontally */

@@ -12,6 +12,35 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.other-rates-banner {
+    background-color: #2a2b7b7e;
+    color: #2A2C7B;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.other-rates-banner p {
+    margin: 0;
+    font-size: 14px; /* Adjust font size */
+    font-weight: bold; /* Make the text bold */
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.map-banner {
+    background-color: #2A2C7B;
+    color: white;
+    padding: 30px 0;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.map-banner p {
+    margin: 0;
+    font-size: 14px; /* Adjust font size */
+    font-weight: bold; /* Make the text bold */
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 
 #biq-journey-form {
     display: flex;

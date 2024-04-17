@@ -110,11 +110,14 @@ const quotes = {
                 }
     
                 $("#quote-results").html(ele); // Replace the content of #quote-results with the container
+
+                // Show the other rates banner after other rates quotes are initialized
+                $(".other-rates-banner").show();
             } else {
                 var ele = quotes.quoteError(results.warnings[0]);
                 $("#quote-results").html(ele);
             }
-            $("#other-rates").html(quotes.otherRates(results.other_rates));
+            $("#quote-results").append(quotes.otherRates(results.other_rates));
             showMap();
         } else {
             $("#quote-results").html(quotes.quoteError(results.error));
@@ -128,7 +131,7 @@ const quotes = {
     },
 
     "otherRates": function(other_rates) {
-        var ele = $("<div id=\"other-rate-card\"></div>"); // Create a container for quote cards
+        var ele = $("<div id=\"other-rates\"></div>"); // Create a container for quote cards
         if (other_rates.hasOwnProperty("blackcab")) {
             ele.append(quotes.createOtherRateCard("blackcab", other_rates.blackcab));
         }
