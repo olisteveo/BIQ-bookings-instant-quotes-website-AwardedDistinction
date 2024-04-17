@@ -25,14 +25,127 @@ function getCookie(name) {
     return null;
 }
 
-// Initialise the map when quotes are loaded
-function initializeMap() {
-    const map = new google.maps.Map(document.getElementById('map'), {
-        center: { lat: 51.5074, lng: 0.1272 },
-        zoom: 8
+// Wait for the DOM to be fully loaded
+$(document).ready(function() {
+    // Add event listeners to clear inputs when 'x' is clicked
+    $('#clear-pickup').click(function(event) {
+        event.preventDefault(); // Prevent form submission
+        $('#pickup').val(''); // Clear the pickup input field
     });
-    return map;
+
+    $('#clear-destination').click(function(event) {
+        event.preventDefault(); // Prevent form submission
+        $('#destination').val(''); // Clear the destination input field
+    });
+});
+
+
+function initializeMap() {
+    const mapOptions = {
+        center: { lat: 51.5074, lng: -0.1278 }, // London coordinates as an example
+        zoom: 12, // Initial zoom level
+        scrollwheel: false, // Disable scroll wheel zooming
+        styles: [
+            {
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#cccce6" // Background color
+                    }
+                ]
+            },
+            {
+                "elementType": "labels.text.fill",
+                "stylers": [
+                    {
+                        "color": "#000000" // Text color
+                    }
+                ]
+            },
+            {
+                "elementType": "labels.text.stroke",
+                "stylers": [
+                    {
+                        "color": "#ffffff" // Text outline color
+                    },
+                    {
+                        "visibility": "on" // Show text outline
+                    }
+                ]
+            },
+            {
+                "featureType": "water",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "color": "#000000" // Water color
+                    }
+                ]
+            },
+            {
+                "featureType": "landscape",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "color": "#b3b3d9" // Grass/greenland color
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#ffffff" // Road color
+                    }
+                ]
+            },
+            {
+                "featureType": "road.highway",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#d9d9d9" // Motorway color
+                    }
+                ]
+            },
+            {
+                "featureType": "road.text",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                    {
+                        "color": "#ff3333" // Road name color
+                    }
+                ]
+            },
+            {
+                "featureType": "road.text",
+                "elementType": "labels.text.stroke",
+                "stylers": [
+                    {
+                        "color": "#ffffff" // Road name outline color
+                    },
+                    {
+                        "weight": 2 // Road name outline weight
+                    }
+                ]
+            }
+            // Add more custom styles as needed
+        ],
+        mapTypeControl: false, // Hide map/satellite button
+        fullscreenControl: false, // Hide fullscreen button
+        zoomControl: false, // Hide zoom control
+        streetViewControl: false // Hide Street View control
+    };
+
+    return new google.maps.Map(document.getElementById('map'), mapOptions);
 }
+
+
+
+
+
+
 
 // Function to get the current date plus a specified number of days
 function dateNowPlusDays(d) {
@@ -48,17 +161,24 @@ function showMap(pickupLat, pickupLng, destinationLat, destinationLng, journey) 
     // Display the map banner after the map has been initialized
     $(".map-banner").show();
 
-    console.log(pickupLat, pickupLng, destinationLat, destinationLng);
     const pickup = new google.maps.LatLng(pickupLat, pickupLng);
     const destination = new google.maps.LatLng(destinationLat, destinationLng);
     const directionsService = new google.maps.DirectionsService();
-    const directionsRenderer = new google.maps.DirectionsRenderer();
-    directionsRenderer.setMap(map);
+    const directionsRenderer = new google.maps.DirectionsRenderer({
+        map: map,
+        polylineOptions: {
+            strokeColor: '#FF0000', // Red color
+            strokeOpacity: 0.8,
+            strokeWeight: 3
+        }
+    });
+
     const request = {
         origin: pickup,
         destination: destination,
         travelMode: 'DRIVING'
     };
+
     directionsService.route(request, function(result, status) {
         if (status == 'OK') {
             directionsRenderer.setDirections(result);

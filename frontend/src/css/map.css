@@ -18,4 +18,10 @@
     margin: 0 auto; /* Center horizontally on the page */
     padding: 20px; /* Add spacing around the map */
     height: 340px;
+    filter: brightness(100%); /* Prevent darkening effect */
 }
+
+.gm-style-mtc { /* Hide the message to press Ctrl + scroll */
+    display: none !important;
+}
+

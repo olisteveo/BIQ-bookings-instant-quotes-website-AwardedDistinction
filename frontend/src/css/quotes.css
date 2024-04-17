@@ -159,3 +159,32 @@ input:focus + label {
     text-align: center;
 }
 
+/* styles.css */
+
+/* Style for input fields */
+.input-container {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+input[type="text"] {
+    width: 200px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Style for clear buttons */
+.clear-button {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background-color: transparent;
+    color: #ccc;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+

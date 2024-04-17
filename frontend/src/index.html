@@ -18,6 +18,7 @@
     <script src="https://api.taxicode.com/jswrapper/"></script>
     <script src="/js/main.js" defer></script>
     <script src="/js/quote.js" defer></script>
+    <script src="/js/map.js" defer></script>
     <script src="/js/user.js" defer></script>
     <script src="/js/biq_api.js" defer></script>
 </head>
@@ -43,11 +44,17 @@
         <form id="biq-journey-form">
             <div class="form-row">
                 <label for="pickup">Pickup</label>
-                <input type="text" id="pickup" name="pickup" value="">
+                <div class="input-container">
+                    <input type="text" id="pickup" name="pickup" value="">
+                    <button id="clear-pickup" class="clear-button">&times;</button>
+                </div>
             </div>
             <div class="form-row">
                 <label for="destination">Destination</label>
-                <input type="destination" id="destination" name="destination" value="">
+                <div class="input-container">
+                    <input type="destination" id="destination" name="destination" value="">
+                    <button id="clear-destination" class="clear-button">&times;</button>
+                </div>
             </div>
             <div class="form-row">
                 <label for="date">Date</label>

@@ -38,6 +38,12 @@ const quotes = {
         e.preventDefault();
         if (quotes.isQuoting()) { return } // show in report spam click protected
         quotes.quoting = true;
+    
+        // Hide map and map banner
+        $("#map-container").hide();
+        $(".map-banner").hide();
+        $(".other-rates-banner").hide();
+    
         var f = $("#biq-journey-form"),
             j = {
                 "pickup": f.find("[name=pickup]").val(),
@@ -50,6 +56,7 @@ const quotes = {
         $("#quote-results").html($("<p><img src='/img/loading.gif' alt='Loading...' /></p>"));
         BIQ.getQuotes(j, quotes.renderResults);
     },
+    
 
     "renderResults": function(results) {
         if (results.status == BIQ.STATUS_OK) {
