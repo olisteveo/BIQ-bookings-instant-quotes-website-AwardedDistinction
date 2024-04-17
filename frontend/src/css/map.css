@@ -4,7 +4,8 @@
     align-items: center; /* Center vertically */
     min-width: 90%; /* Adjust the max-width*/
     margin: 0 auto 10px auto; /* Center horizontally on the page */
-    padding: 20px; /* Add spacing around the map */
+    padding-top: 10px; /* Add spacing around the map */
+    padding-bottom: 40px; /* Add spacing around the map */
     height: 340px;
     display: none;
 }

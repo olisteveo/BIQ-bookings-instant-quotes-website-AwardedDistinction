@@ -23,7 +23,8 @@
 </head>
 <body>
     <div class="banner">
-        <p>Travarang is A Proud Taxicode Affiliate - Specialists in Airport Transfers & Executive Transport</p>
+        <p>Travarang is A Proud Taxicode Affiliate 
+            - Specialists in Airport Transfers & Executive Transport</p>
     </div>    
     <div id="header">
         <div id="logo">
@@ -66,11 +67,17 @@
     <div id="map-container">
         <div id="map"></div>
     </div>
+    <div class="map-banner" style="display: none;">
+        <p></p>
+    </div> 
     <div id="quote-results">
         <div id="highlighted-quotes" class="quote-section"></div>
         <div class="horizontal-border"></div>
         <div id="other-quotes" class="quote-section"></div>
-    </div>       
+    </div>
+    <div class="other-rates-banner" style="display: none;">
+        <p>See How Our Competitors Fare</p>
+    </div>        
     <div id="other-rates" class="quote-section"></div>
  
     <div id="back-to-top">
@@ -130,9 +137,8 @@
             "passengers" : "2"
         }
     document.addEventListener("DOMContentLoaded", function(event) {
-quotes.__init();
-    });
-        
+    quotes.__init();
+    }); 
     </script>
     <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtu2IRw-I9aVFGAUmI8D6B_Vu7vxMTswo&libraries=places&callback=initializeMap"></script>
 </body>

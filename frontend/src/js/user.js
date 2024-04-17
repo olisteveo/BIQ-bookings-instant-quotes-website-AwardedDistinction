@@ -24,8 +24,9 @@ const user = {
     getBookings: function(success_function, failure_function) {
         // Load bookings
         Taxicode_API.get("user/bookings", {
-            data: {"auth_token": Cookie.get("user")},
+            data: {"auth_token": Cookie.get("tc_user_auth")},
             success: function(response) {
+                console.log(response);
                 if (response.status == "OK") {
                     BookTaxiRide.user.bookings = response.bookings;
                     // Custom success function
