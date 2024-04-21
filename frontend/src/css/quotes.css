@@ -1,6 +1,6 @@
 .quote-form {
     background-color: #2A2C7B;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-top: -10px;
@@ -186,5 +186,12 @@ input[type="text"] {
     cursor: pointer;
     font-size: 16px;
 }
+
+.custom-datepicker {
+    background-color: #2A2C7B; /* Set background color */
+    color: #FFFFFF; /* Set text color */
+    border: 1px solid #2A2C7B; /* Set border color */
+}
+
 
 

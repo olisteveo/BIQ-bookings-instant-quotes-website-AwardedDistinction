@@ -25,3 +25,17 @@
     display: none !important;
 }
 
+.map-banner {
+    background-color: #2A2C7B;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.map-banner p {
+    margin: 0;
+    font-size: 14px; /* Adjust font size */
+    font-weight: bold; /* Make the text bold */
+    font-family: Arial, Helvetica, sans-serif;
+}

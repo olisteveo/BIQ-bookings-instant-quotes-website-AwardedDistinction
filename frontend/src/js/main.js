@@ -39,114 +39,6 @@ $(document).ready(function() {
     });
 });
 
-
-function initializeMap() {
-    const mapOptions = {
-        center: { lat: 51.5074, lng: -0.1278 }, // London coordinates as an example
-        zoom: 12, // Initial zoom level
-        scrollwheel: false, // Disable scroll wheel zooming
-        styles: [
-            {
-                "elementType": "geometry",
-                "stylers": [
-                    {
-                        "color": "#cccce6" // Background color
-                    }
-                ]
-            },
-            {
-                "elementType": "labels.text.fill",
-                "stylers": [
-                    {
-                        "color": "#000000" // Text color
-                    }
-                ]
-            },
-            {
-                "elementType": "labels.text.stroke",
-                "stylers": [
-                    {
-                        "color": "#ffffff" // Text outline color
-                    },
-                    {
-                        "visibility": "on" // Show text outline
-                    }
-                ]
-            },
-            {
-                "featureType": "water",
-                "elementType": "geometry.fill",
-                "stylers": [
-                    {
-                        "color": "#000000" // Water color
-                    }
-                ]
-            },
-            {
-                "featureType": "landscape",
-                "elementType": "geometry.fill",
-                "stylers": [
-                    {
-                        "color": "#b3b3d9" // Grass/greenland color
-                    }
-                ]
-            },
-            {
-                "featureType": "road",
-                "elementType": "geometry",
-                "stylers": [
-                    {
-                        "color": "#ffffff" // Road color
-                    }
-                ]
-            },
-            {
-                "featureType": "road.highway",
-                "elementType": "geometry",
-                "stylers": [
-                    {
-                        "color": "#d9d9d9" // Motorway color
-                    }
-                ]
-            },
-            {
-                "featureType": "road.text",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                    {
-                        "color": "#ff3333" // Road name color
-                    }
-                ]
-            },
-            {
-                "featureType": "road.text",
-                "elementType": "labels.text.stroke",
-                "stylers": [
-                    {
-                        "color": "#ffffff" // Road name outline color
-                    },
-                    {
-                        "weight": 2 // Road name outline weight
-                    }
-                ]
-            }
-            // Add more custom styles as needed
-        ],
-        mapTypeControl: false, // Hide map/satellite button
-        fullscreenControl: false, // Hide fullscreen button
-        zoomControl: false, // Hide zoom control
-        streetViewControl: false // Hide Street View control
-    };
-
-    return new google.maps.Map(document.getElementById('map'), mapOptions);
-}
-
-
-
-
-
-
-
 // Function to get the current date plus a specified number of days
 function dateNowPlusDays(d) {
     var n = new Date(),
@@ -167,7 +59,7 @@ function showMap(pickupLat, pickupLng, destinationLat, destinationLng, journey) 
     const directionsRenderer = new google.maps.DirectionsRenderer({
         map: map,
         polylineOptions: {
-            strokeColor: '#FF0000', // Red color
+            strokeColor: '#FF0000', // Red colour
             strokeOpacity: 0.8,
             strokeWeight: 3
         }
@@ -208,7 +100,6 @@ function showMap(pickupLat, pickupLng, destinationLat, destinationLng, journey) 
         }
     });
 }
-
 
 // Function to hide the logout button container
 function hideLogout() {
@@ -277,7 +168,6 @@ function renderResults(results) {
     }
 }
 
-
 // Function to validate the structure of a location object
 function isValidLocation(location) {
     return (
@@ -287,6 +177,21 @@ function isValidLocation(location) {
         location.position.length === 2
     );
 }
+
+// Test cases
+// const validLocation = { position: [51.5074, -0.1278] }; // Valid location object
+// const invalidLocation1 = { position: [51.5074] }; // Missing longitude
+// const invalidLocation2 = { position: [51.5074, -0.1278, 0] }; // Additional value
+// const invalidLocation3 = { }; // Missing position property
+// const invalidLocation4 = null; // Null value
+
+// Log results of the test cases
+// console.log("Valid location:", isValidLocation(validLocation)); // Should return true
+// console.log("Invalid location 1:", isValidLocation(invalidLocation1)); // Should return false
+// console.log("Invalid location 2:", isValidLocation(invalidLocation2)); // Should return false
+// console.log("Invalid location 3:", isValidLocation(invalidLocation3)); // Should return false
+// console.log("Invalid location 4:", isValidLocation(invalidLocation4)); // Should return false
+
 
 // Event listener for when the DOM is fully loaded
 $(document).ready(function() {
