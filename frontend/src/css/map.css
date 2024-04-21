@@ -18,4 +18,24 @@
     margin: 0 auto; /* Center horizontally on the page */
     padding: 20px; /* Add spacing around the map */
     height: 340px;
+    filter: brightness(100%); /* Prevent darkening effect */
+}
+
+.gm-style-mtc { /* Hide the message to press Ctrl + scroll */
+    display: none !important;
+}
+
+.map-banner {
+    background-color: #2A2C7B;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.map-banner p {
+    margin: 0;
+    font-size: 14px; /* Adjust font size */
+    font-weight: bold; /* Make the text bold */
+    font-family: Arial, Helvetica, sans-serif;
 }

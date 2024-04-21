@@ -25,14 +25,19 @@ function getCookie(name) {
     return null;
 }
 
-// Initialise the map when quotes are loaded
-function initializeMap() {
-    const map = new google.maps.Map(document.getElementById('map'), {
-        center: { lat: 51.5074, lng: 0.1272 },
-        zoom: 8
+// Wait for the DOM to be fully loaded
+$(document).ready(function() {
+    // Add event listeners to clear inputs when 'x' is clicked
+    $('#clear-pickup').click(function(event) {
+        event.preventDefault(); // Prevent form submission
+        $('#pickup').val(''); // Clear the pickup input field
     });
-    return map;
-}
+
+    $('#clear-destination').click(function(event) {
+        event.preventDefault(); // Prevent form submission
+        $('#destination').val(''); // Clear the destination input field
+    });
+});
 
 // Function to get the current date plus a specified number of days
 function dateNowPlusDays(d) {
@@ -48,17 +53,24 @@ function showMap(pickupLat, pickupLng, destinationLat, destinationLng, journey) 
     // Display the map banner after the map has been initialized
     $(".map-banner").show();
 
-    console.log(pickupLat, pickupLng, destinationLat, destinationLng);
     const pickup = new google.maps.LatLng(pickupLat, pickupLng);
     const destination = new google.maps.LatLng(destinationLat, destinationLng);
     const directionsService = new google.maps.DirectionsService();
-    const directionsRenderer = new google.maps.DirectionsRenderer();
-    directionsRenderer.setMap(map);
+    const directionsRenderer = new google.maps.DirectionsRenderer({
+        map: map,
+        polylineOptions: {
+            strokeColor: '#FF0000', // Red colour
+            strokeOpacity: 0.8,
+            strokeWeight: 3
+        }
+    });
+
     const request = {
         origin: pickup,
         destination: destination,
         travelMode: 'DRIVING'
     };
+
     directionsService.route(request, function(result, status) {
         if (status == 'OK') {
             directionsRenderer.setDirections(result);
@@ -88,7 +100,6 @@ function showMap(pickupLat, pickupLng, destinationLat, destinationLng, journey) 
         }
     });
 }
-
 
 // Function to hide the logout button container
 function hideLogout() {
@@ -157,7 +168,6 @@ function renderResults(results) {
     }
 }
 
-
 // Function to validate the structure of a location object
 function isValidLocation(location) {
     return (
@@ -167,6 +177,21 @@ function isValidLocation(location) {
         location.position.length === 2
     );
 }
+
+// Test cases
+// const validLocation = { position: [51.5074, -0.1278] }; // Valid location object
+// const invalidLocation1 = { position: [51.5074] }; // Missing longitude
+// const invalidLocation2 = { position: [51.5074, -0.1278, 0] }; // Additional value
+// const invalidLocation3 = { }; // Missing position property
+// const invalidLocation4 = null; // Null value
+
+// Log results of the test cases
+// console.log("Valid location:", isValidLocation(validLocation)); // Should return true
+// console.log("Invalid location 1:", isValidLocation(invalidLocation1)); // Should return false
+// console.log("Invalid location 2:", isValidLocation(invalidLocation2)); // Should return false
+// console.log("Invalid location 3:", isValidLocation(invalidLocation3)); // Should return false
+// console.log("Invalid location 4:", isValidLocation(invalidLocation4)); // Should return false
+
 
 // Event listener for when the DOM is fully loaded
 $(document).ready(function() {

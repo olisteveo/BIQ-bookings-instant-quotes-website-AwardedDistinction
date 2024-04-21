@@ -1,0 +1,18 @@
+<!-- My Bookings Page (my-bookings.html) -->
+<div id="bookings-list"></div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Retrieve user's bookings
+    user.getBookings(function(bookings) {
+        if (bookings.length > 0) {
+            // Display user's bookings
+            var bookingsList = document.getElementById("bookings-list");
+            // Populate the bookingsList with the bookings data
+        } else {
+            // Display message indicating no bookings
+            document.getElementById("bookings-list").innerHTML = "You don't have any bookings.";
+        }
+    });
+});
+</script>

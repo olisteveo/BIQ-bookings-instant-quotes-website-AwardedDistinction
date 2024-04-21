@@ -26,22 +26,6 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.map-banner {
-    background-color: #2A2C7B;
-    color: white;
-    padding: 30px 0;
-    text-align: center;
-    margin-top: 10px;
-}
-
-.map-banner p {
-    margin: 0;
-    font-size: 14px; /* Adjust font size */
-    font-weight: bold; /* Make the text bold */
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-
 #biq-journey-form {
     display: flex;
     flex-direction: row;
@@ -81,7 +65,7 @@
 }
 
 .horizontal-border {
-    border-top: 3px solid blue; /* Thin blue border */
+    border-top: 3px #2A2C7B; /* Thin blue border */
 }
 
 /* Adjust label styles */
